@@ -20,14 +20,5 @@ spec:
         command: ["node", "-e", "require('http').createServer((req, res) => res.end('Hello from Node.js!')).listen(3000)"]
         ports:
         - containerPort: 3000
-        env:
-        - name: USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: node-app-secret
-              key: username
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: node-app-secret
-              key: password
+      imagePullSecrets:
+        - name: node-app-secret
